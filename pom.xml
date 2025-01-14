@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.github.irybov</groupId>
+  <artifactId>migration</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>migration</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <flyway.version>9.14.0</flyway.version>
+    <jdk.version>1.8</jdk.version>
+  </properties>
+
+  <dependencies>
+	<dependency>
+	    <groupId>org.flywaydb</groupId>
+	    <artifactId>flyway-maven-plugin</artifactId>
+	    <version>${flyway.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.h2database</groupId>
+	    <artifactId>h2</artifactId>
+	    <version>2.1.214</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+	  <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.13.0</version>
+	        <configuration>
+	          <source>${jdk.version}</source>
+	          <target>${jdk.version}</target>
+	        </configuration>
+	      </plugin>
+		  <plugin>
+		    <groupId>org.flywaydb</groupId>
+		    <artifactId>flyway-maven-plugin</artifactId>
+		    <version>${flyway.version}</version>
+<!-- 		    <configuration>
+		        <user>sa</user>
+		        <password></password>
+		        <schemas>
+		            <schema>bankdemo</schema>
+		        </schemas>
+		        <locations>
+                    <location>filesystem:src/main/resources/db/migration</location>
+                </locations>
+		        <cleanDisabled>false</cleanDisabled>
+		        <driver>org.h2.Driver</driver>
+   				<url>jdbc:h2:file:~/demodb;DATABASE_TO_LOWER=TRUE;MODE=PostgreSQL</url>
+		    </configuration> -->
+			</plugin>
+		</plugins>
+		
+		<resources>
+	       <resource>
+	           <directory>src/main/resources</directory>
+	           <filtering>true</filtering>
+	       </resource>
+	   </resources>
+	</build>
+	
+</project>
